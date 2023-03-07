@@ -67,6 +67,7 @@ function Form() {
             const { data } = await axiosClient.post('/users/', formData)
             setPageType('login')
         } catch (error) {
+            alert('User already exists')
             console.log(error.response.data.message)
         }
         onSubmitProps.resetForm()
@@ -91,6 +92,7 @@ function Form() {
             }))
             navigate('/')
         } catch (error) {
+            alert('Invalid email or password')
             console.log(error.response.data.message)
         }
         onSubmitProps.resetForm()

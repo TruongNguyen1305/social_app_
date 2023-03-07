@@ -29,9 +29,9 @@ export const registerUser = async (req, res, next) => {
             viewedProfile: Math.floor(Math.random() * 10000),
             impressions: Math.floor(Math.random() * 10000)
         })
-        const savedUser = await newUser.save().populate('friends', '-email -password')
+        const savedUser = await newUser.save()
         delete savedUser.password
-        res.status(201).json(savedUser)
+        res.status(201).json(await savedUser.populate('friends', '-email -password'))
     } catch (error) {
         next(error)
     }
